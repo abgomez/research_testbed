@@ -1,0 +1,2 @@
+class IoTException(Exception):
+    pass
