@@ -1,0 +1,22 @@
+Sawtooth 1.1, running poet consensus.
+This was a POC of three nodes, the official instruction of sawtooth do not mention the use of the engine. 
+
+I compiled the information from several links. 
+
+https://github.com/hyperledger/sawtooth-poet/blob/master/ci/sawtooth-poet-engine
+
+https://sawtooth.hyperledger.org/docs/core/nightly/master/sysadmin_guide/configure_sgx.html?highlight=engine
+
+https://sawtooth.hyperledger.org/docs/core/nightly/master/sysadmin_guide/systemd.html
+
+What is important to have sawtooth 1.1 running.
+
+- You need to include the consensus in the validator. 
+	--bind consensus:tcp://127.0.0.1:5050 
+- You also need to start the engine. 
+	poet-engine -v --connect tcp://127.0.0.1:5050 --component tcp://127.0.0.1:1001 &
+ - the first is the port where the engine is running, the second is the port where the validator 	is running.
+
+
+
+
