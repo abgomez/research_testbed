@@ -14,6 +14,7 @@ sawtooth keygen
 #validator
 #sawtooth-validator -vv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peers tcp://10.0.0.20:1003,tcp://10.0.1.21:1003 &
 #sawtooth-validator -vvv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peering dynamic --seeds tcp://10.0.0.20:1003,tcp://10.0.5.20:1003,tcp://10.0.11.20:1003 --scheduler parallel &
+#sawtooth-validator -vvv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peering dynamic --seeds tcp://10.0.2.20:1003 --scheduler parallel &
 sawtooth-validator -vvv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peering dynamic --seeds tcp://10.0.0.20:1003,tcp://10.0.5.20:1003,tcp://10.0.11.20:1003 --scheduler serial &
 
 #rest api
