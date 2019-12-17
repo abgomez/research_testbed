@@ -1,7 +1,9 @@
 #get ip address
-IP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1)
+#IP=$(ifconfig | grep -Eo 'inet (addr:)?([0-9]*\.){3}[0-9]*' | grep -Eo '([0-9]*\.){3}[0-9]*' | grep -v '127.0.0.1' | head -n 1)
+IP=127.0.0.1
 
 #create folders
+cd /home/manhattan/Desktop/throughput_test
 mkdir data
 mkdir logs
 mkdir keys
@@ -26,14 +28,14 @@ sawset proposal create -k keys/validator.priv \
 -o poet-settings.batch \
 sawtooth.poet.target_wait_time=5 \
 sawtooth.poet.initial_wait_time=25 \
-sawtooth.publisher.max_batches_per_block=200
+sawtooth.publisher.max_batches_per_block=21
 
 sawadm genesis config-genesis.batch config.batch poet.batch poet-settings.batch
 
 #validator
 #sawtooth-validator -vv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peers tcp://10.0.0.21:1003,tcp://10.0.2.20:1003 &
-#sawtooth-validator -vvv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peering dynamic --scheduler parallel &
-sawtooth-validator -vvv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peering dynamic --scheduler serial &
+sawtooth-validator -vvv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peering dynamic --scheduler parallel &
+#sawtooth-validator -vvv --bind component:tcp://127.0.0.1:1001 --bind network:tcp://$IP:1003 --endpoint tcp://$IP:1003 --bind consensus:tcp://127.0.0.1:5050 --peering dynamic --scheduler serial &
 
 #rest api
 sawtooth-rest-api -v --bind $IP:1002 --connect 127.0.0.1:1001 &

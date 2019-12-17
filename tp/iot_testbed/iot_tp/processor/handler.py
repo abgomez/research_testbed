@@ -90,8 +90,8 @@ def _do_iot(device_id, metadata, timestamp, state):
     LOGGER.debug(msg)
 
     address = make_iot_address(metadata)
-    if address in state:
-        raise InvalidTransaction('Image already exists: {i}'. format(i=state[address]))
+    #if address in state:
+    #    raise InvalidTransaction('Image already exists: {i}'. format(i=state[address]))
 
     updated = {k: v for k, v in state.items()}
 
